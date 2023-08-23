@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+    Your shopping cart
+{% endblock %}
+{% block content %}
+    <div class="col">
+            {% if cart%}
+    <h1 class="text-center">Ваша корзина</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Фото</th>
+            <th>Наименование</th>
+            <th>Кол-во</th>
+            <th>Удалить из корзины</th>
+            <th>Цена</th>
+            <th>Стоимость</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in cart %}
+            {% with product=item.product %}
+                <tr>
+                    <td>
+                        <a href="{{ product.get_absolute_url }}">
+                        <img src="{% if product.image %}{{ product.image.url }}{% else %}
+{% static "img/no-image.png" %}{% endif %}" style="max-width: 50px" alt="">
+                        </a>
+                    </td>
+                    <td>{{ product.name }}</td>
+                    <td class="ml-5">{{ item.quantity }}</td>
+                    <td>
+                        <a class="text-decoration-none link-danger" href="{% url "cart_remove" product.id%}"><b>Удалить</b></a>
+                    </td>
+                    <td class="num">{{ item.price|floatformat }} р.</td>
+                    <td class="num">{{ item.total_price|floatformat }} р.</td>
+                </tr>
+            {% endwith %}
+        {% endfor %}
+        <tr class="total">
+            <td colspan="4"></td>
+            <td><b class="float-lg-right">Общая стоимость:</b></td>
+            <td class="num">{{ cart.get_total_price|floatformat }} р.</td>
+        </tr>
+        </tbody>
+    </table>
+    <p class="text-right">
+        <a href="{% url "order_create" %}" class="btn btn-sm btn-success">Оформить заказ</a>
+        <a href="{% url "home" %}" class="btn btn-sm btn-danger text-white">Продолжить покупки</a>
+    </p>
+                {% else %}
+
+    <p class="text-right">
+    <h1 class="text-center">Ваша корзина пуста</h1>
+        <a href="{% url "home" %}" class="btn btn-warning">Перейти к покупкам</a>
+    </p>
+            {% endif %}
+    </div>
+{% endblock %}

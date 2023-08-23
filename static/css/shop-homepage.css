@@ -1,0 +1,84 @@
+/*!
+ * Start Bootstrap - Shop Homepage (https://startbootstrap.com/template/shop-homepage)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-shop-homepage/blob/master/LICENSE)
+ */
+body {
+  padding-top: 56px;
+}
+
+.rub {
+	line-height: 5px;
+	width: 0.4em;
+	border-bottom: 1px solid #ffffff;
+	display: inline-block;
+}
+
+
+.number {
+	display: inline-block;
+	position: relative;
+	width: 100px;
+}
+.number input[type="number"] {
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	text-align: center;
+	-moz-appearance: textfield;
+	-webkit-appearance: textfield;
+	appearance: textfield;
+}
+.number input[type="number"]::-webkit-outer-spin-button,
+.number input[type="number"]::-webkit-inner-spin-button {
+	display: none;
+}
+.number-minus {
+	position: absolute;
+	top: 1px;
+	left: 1px;
+	bottom: 1px;
+	width: 20px;
+	padding: 0;
+	display: block;
+	text-align: center;
+	border: none;
+	border-right: 1px solid #ddd;
+	font-size: 16px;
+	font-weight: 600;
+}
+.number-plus {
+	position: absolute;
+	top: 1px;
+	right: 1px;
+	bottom: 1px;
+	width: 20px;
+	padding: 0;
+	display: block;
+	text-align: center;
+	border: none;
+	border-left: 1px solid #ddd;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+#cart-icon{
+	width:25px;
+	display: inline-block;
+	margin-left: 15px;
+}
+
+.cart-total{
+	display: block;
+	text-align: center;
+	color:#fff;
+	background-color: red;
+	width: 20px;
+	height: 25px;
+	border-radius: 50%;
+	font-size: 14px;
+}

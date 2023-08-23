@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <title>{% block title %}My shop{% endblock %}</title>  <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'bootstrap5/css/bootstrap.min.css' %}">
+    <link rel="shortcut icon" type="image/png" href="{% static "img/favicon.ico" %}">
+  <!-- Custom styles for this template -->
+  <link href="{% static 'css/shop-homepage.css' %}" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top" style="background: #3a4a65;">
+    <div class="container">
+      <a class="navbar-brand" href="{% url 'home' %}">Магазин</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item {% if request.path == product_list_url %}active{% endif %}">
+            <a class="nav-link" href="{% url 'home' %}">Главная
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">О нас</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Услуги</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Контакты</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+      <div class="row mt-1 mb-2">
+      <div class="col-lg-5 align-self-center text-center" >
+          <a href="{% url 'home' %}" class="text-decoration-none" style="color: #dc3545">
+              <img src="{% static 'img/Logo.png' %}"  alt="">
+          </a>
+              </div>
+	    <div class="col-lg-4  align-self-center text-center">
+            <p class="text-muted m-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+  <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+  <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+</svg>
+                Время работы:
+            </p>
+            <p class="m-0">
+пн-пт 10:00-20:00, сб-вс 10:00-18:00
+            </p>
+        </div>
+
+          <div class="col-lg-3 text-center ">
+            <p class="text-muted m-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building" viewBox="0 0 16 16">
+  <path fill-rule="evenodd" d="M14.763.075A.5.5 0 0 1 15 .5v15a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5V14h-1v1.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V10a.5.5 0 0 1 .342-.474L6 7.64V4.5a.5.5 0 0 1 .276-.447l8-4a.5.5 0 0 1 .487.022zM6 8.694L1 10.36V15h5V8.694zM7 15h2v-1.5a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 .5.5V15h2V1.309l-7 3.5V15z"/>
+  <path d="M2 11h1v1H2v-1zm2 0h1v1H4v-1zm-2 2h1v1H2v-1zm2 0h1v1H4v-1zm4-4h1v1H8V9zm2 0h1v1h-1V9zm-2 2h1v1H8v-1zm2 0h1v1h-1v-1zm2-2h1v1h-1V9zm0 2h1v1h-1v-1zM8 7h1v1H8V7zm2 0h1v1h-1V7zm2 0h1v1h-1V7zM8 5h1v1H8V5zm2 0h1v1h-1V5zm2 0h1v1h-1V5zm0-2h1v1h-1V3z"/>
+</svg>
+
+                Приезжайте к нам по адресу:
+            </p>
+            <p class="m-0">
+ г. Екатеринбург, ул. 8 марта, д. 13, этаж 3,</p>
+              <p class="m-0">офис 349</p>
+	    </div>
+      </div>
+  </div>
+  <nav class="navbar navbar-light" style="background: #cbcfd4;">
+  <div class="container-fluid">
+  <div class="container">
+<div class="col p-0" >
+
+</div>
+        <div class="p-1 col-lg-5 m-1" style="background-color: #ffffff; border-radius: 20px; border: 1px solid #3a4a65;">
+    <form class="d-flex" action="{% url 'search_product' %}" method="GET">
+        {% csrf_token %}
+
+      <input class="ml-2 w-100" type="text" style="border: none; outline: none; -webkit-appearance: none;" placeholder="Поиск" aria-label="Search" name="q">
+      <button class="float-lg-right mr-2 text-decoration-none" type="submit" id="button-addon2" style="background:transparent; border:none; color:transparent;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+      </button>
+    </form>
+        </div>
+	    <div class="col form-inline  my-lg-0 ">
+<div class=" align-self-center">
+<a href="{% url "cart_detail" %}" class="text-dark  text-decoration-none">
+    <img src="{% static 'img/cart.png' %}" style="max-width: 40px;" alt="">
+</a>
+</div>
+ <p class="cart-total" style="display: block; padding: 0 5px 0 5px ;text-align: center;	color:#fff;	background: #3a4a65; width: auto; height: 25px;	border: 1px solid #3a4a65;	border-radius: 10px;
+	font-size: 14px; font-weight:bold;">
+     <span id="total_products_qty">
+     {% with total_items=cart|length %}
+        {% if cart|length > 0 %}
+            <a href="{% url "cart_detail" %}" class="text-decoration-none link-light">
+                тов. ({{ total_items }}), {{ cart.get_total_price }} р.
+            </a>
+        {% else %}
+            Корзина пуста
+        {% endif %}
+    {% endwith %}
+{#     #}
+{#     #}
+{#      {% if total_items %}#}
+{#      ({{ total_items }})#}
+{#          {{ cart.get_total_price }}#}
+{#      {% else %}#}
+{#      (0)#}
+{#      {% endif %}#}
+    </span>
+{#     <span class="rub">Р</span> </p>#}
+
+	    </div>
+  </div>
+      </div>
+</nav>
+<div class="container">
+<div class="row">
+<div class="col-lg-2 mt-1 ">
+        <div class="list-group">
+            <a href="{% url 'home' %}" class="text-decoration-none h5 link-light list-group-item text-center font-weight-normal m-0" style="background: #3a4a65;">Каталог</a>
+{#            <a class="list-group-item text-decoration-none link-dark" href="{% url 'product_list' %}">Весь список</a>#}
+        </div>
+            {% for c in categories %}
+                <div class="list-group">
+                    <a class="list-group-item text-decoration-none link-dark" href="{{ c.get_absolute_url }}">{{ c.name }}</a>
+                </div>
+            {% endfor %}
+    </div>
+    {% block content %}
+    {% endblock %}
+</div>
+</div>
+  <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'bootstrap5/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/scripts.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+</body>
+</html>

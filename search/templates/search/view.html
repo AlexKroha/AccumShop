@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class=" col-lg-9 m-0 p-1">
+    {% if query %}
+    <div>
+
+Результат по запросу {{ query }}
+    </div>
+        <hr/>
+    {% endif %}
+
+    {% for obj in object_list %}
+        {{ forloop.counter }}.
+        <a href="{{ obj.get_absolute_url }}">{{ obj.name }}</a>
+        <br/>
+
+    {% endfor %}
+
+</div>
+
+{% endblock content %}
